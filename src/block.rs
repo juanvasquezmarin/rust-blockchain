@@ -4,6 +4,8 @@ use crate::{ProofOfWork, Transaction};
 use create::new_proof_of_work::ProofOfWork;
 use create::transaction::Transaction;
 use serde::{Serialize,Deserialize};
+use sled::IVec;
+
 
 pub struct Block{
     timestamp:i64,
@@ -73,5 +75,12 @@ impl Block{
         return Block::new_block(String::new(),&transactions,0);
     }
 
+}
+
+impl From<Block> for IVec{
+    fn from(b:Block)->Self{
+        let bytes=bincode.serialize(%b).unwrap();
+        Self::from(bytes)
+    }
 }
 
