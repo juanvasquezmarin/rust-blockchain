@@ -6,7 +6,6 @@ use create::transaction::Transaction;
 use serde::{Serialize,Deserialize};
 use sled::IVec;
 
-
 pub struct Block{
     timestamp:i64,
     pre_block_hash:String,
@@ -79,7 +78,7 @@ impl Block{
 
 impl From<Block> for IVec{
     fn from(b:Block)->Self{
-        let bytes=bincode.serialize(%b).unwrap();
+        let bytes=bincode.serialize(&b).unwrap();
         Self::from(bytes)
     }
 }
