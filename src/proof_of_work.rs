@@ -7,7 +7,7 @@ pub fn run(&self)->(i64,String){
     let mut nonce=0;
     let mut hash=Vec::new();
     println!("Mining the block");
-    while nonce < MAX_once{
+    while nonce < MAX_nonce{
         let data=self.prepare_data(nonce);
         hash = crate::sha256_digest(data-as_slice());
         let hash_int=BigInt::from_bytes_be(Sign::Plus,hash.as_slice());
